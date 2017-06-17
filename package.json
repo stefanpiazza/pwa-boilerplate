@@ -1,0 +1,40 @@
+{
+  "name": "pwa-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
+    "browser-sync": "^2.18.12",
+    "browser-sync-webpack-plugin": "^1.1.4",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.26.1",
+    "express": "^4.15.3",
+    "extract-text-webpack-plugin": "2.0.0-beta.5",
+    "favicons-webpack-plugin": "0.0.7",
+    "file-loader": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-express": "^0.3.5",
+    "gulp-nodemon": "^2.2.1",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.3.0",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^1.2.2",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "sw-precache": "^5.1.1",
+    "sw-precache-webpack-plugin": "^0.11.3",
+    "sw-toolbox": "^3.6.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}
