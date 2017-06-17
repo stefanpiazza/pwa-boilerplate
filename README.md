@@ -1,5 +1,5 @@
 # PWA Boilerplate
-Basic progressive web app Boilerplate.
+Basic progressive web app boilerplate.
 
 ## Getting Started
 
