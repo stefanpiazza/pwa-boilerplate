@@ -5,9 +5,11 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
-const swPrecacheConfig = require('./sw-precache.config.js');
+const swPrecacheConfig = require("./sw-precache.config.js");
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -23,15 +25,39 @@ module.exports = {
         contentBase: path.join(__dirname, "app"),
     },
     module: {
-        rules: [{
-                test: /\.(svg|jpg|png)$/,
-                use: "file-loader?name=/static/images/[name].[ext]"
+        rules: [
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "/static/images/[name].[ext]"
+                        }
+                    },
+                    {
+                        loader: "image-webpack-loader"
+                    }
+                ]
             },
             {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract({
                     fallbackLoader: "style-loader",
-                    loader: "css-loader?importLoaders=1!postcss-loader!sass-loader"
+                    loader: [
+                        {
+                            loader: "css-loader",
+                            options: {
+                                importLoaders: 1
+                            }
+                        },
+                        {
+                            loader: "postcss-loader"
+                        },
+                        {
+                            loader: "sass-loader"
+                        }
+                    ]
                 })
             },
             {
@@ -64,9 +90,16 @@ module.exports = {
             }
         }),
         new SWPrecacheWebpackPlugin(swPrecacheConfig),
-        new CopyWebpackPlugin([{
-            from: './src/scripts/sw.js',
-            to: 'static/scripts/sw.js'
-        }])
+        new CopyWebpackPlugin([
+            {
+                from: "./src/scripts/sw.js",
+                to: "static/scripts/sw.js"
+            }
+        ]),
+        new HtmlWebpackPlugin({
+            filename: "index.html",
+            template: "./src/index.html",
+            inject: false
+        })
     ]
 }
