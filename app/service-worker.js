@@ -286,9 +286,10 @@ self.addEventListener('fetch', function(event) {
 // Runtime cache configuration, using the sw-toolbox library.
 
 toolbox.router.get("/", toolbox.fastest, {});
+toolbox.router.get(/static/, toolbox.fastest, {});
 
 
 
 
-importScripts("static/scripts/sw.js");
+importScripts("/static/scripts/sw.js");
 
