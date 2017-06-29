@@ -10,6 +10,7 @@ const swPrecacheConfig = require("./sw-precache.config.js");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -17,7 +18,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "./app/"),
-        publicPath: "static/",
+        publicPath: "/",
         filename: "./static/scripts/[name].js",
     },
     devtool: "source-map",
@@ -25,11 +26,9 @@ module.exports = {
         contentBase: path.join(__dirname, "app"),
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: [
-                    {
+                loader: [{
                         loader: "file-loader",
                         options: {
                             name: "/static/images/[name].[ext]"
@@ -44,8 +43,7 @@ module.exports = {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract({
                     fallbackLoader: "style-loader",
-                    loader: [
-                        {
+                    loader: [{
                             loader: "css-loader",
                             options: {
                                 importLoaders: 1
@@ -90,16 +88,24 @@ module.exports = {
             }
         }),
         new SWPrecacheWebpackPlugin(swPrecacheConfig),
-        new CopyWebpackPlugin([
-            {
+        new CopyWebpackPlugin([{
                 from: "./src/scripts/sw.js",
                 to: "static/scripts/sw.js"
+            },
+            {
+                from: "./src/manifest.json",
+                to: "manifest.json"
             }
         ]),
         new HtmlWebpackPlugin({
+            chunks: ['commons', 'app'],
             filename: "index.html",
             template: "./src/index.html",
-            inject: false
+            title: "PWA Boilerplate"
+        }),
+        new FaviconsWebpackPlugin({
+            logo: "./src/images/favicon.png",
+            prefix: "static/images/favicons/"
         })
     ]
 }
