@@ -5,13 +5,17 @@ module.exports = {
         // "app/static/scripts/commons.js"
     ],
     staticFileGlobsIgnorePatterns: [/\.map$/],
-    // stripPrefix: "app/",
+    stripPrefix: "app/",
+    // Looks at publicPath in webpack.config.js
     importScripts: [
-        "./scripts/sw.js"
+        "./static/scripts/sw.js"
     ],
     // Forces sw-toolbox to be included
     runtimeCaching: [{
         handler: "fastest",
         urlPattern: "/"
+    },{
+        handler: "fastest",
+        urlPattern: /static/
     }]
 }
