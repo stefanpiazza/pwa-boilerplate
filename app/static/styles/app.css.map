@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"static/styles/app.css","sourceRoot":""}
+{"version":3,"sources":["webpack:///./src/styles/src/styles/app.scss"],"names":[],"mappings":"AAAA;EACI,uBAAsB;EACtB,UAAS;EACT,WAAU,EACb","file":"static/styles/app.css","sourcesContent":["* {\r\n    box-sizing: border-box;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\n\n\n// WEBPACK FOOTER //\n// ./src/styles/src/styles/app.scss"],"sourceRoot":""}
