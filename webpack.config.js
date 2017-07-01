@@ -15,6 +15,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 module.exports = {
     entry: {
         app: "./src/scripts/app.js",
+        commons: ['react', 'react-dom']
     },
     output: {
         path: path.resolve(__dirname, "./app/"),
@@ -27,8 +28,9 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: [{
+                test: /\.(jpe?g|png|gif|svg)$/,
+                use: [
+                    {
                         loader: "file-loader",
                         options: {
                             name: "/static/images/[name].[ext]"
@@ -42,29 +44,41 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract({
-                    fallbackLoader: "style-loader",
-                    loader: [{
+                    fallback: "style-loader",
+                    use: [
+                        {
                             loader: "css-loader",
                             options: {
-                                importLoaders: 1
+                                camelCase: true,
+                                // Keep same as class definition for now
+                                localIdentName: '[local]',
+                                importLoaders: 2,
+                                modules: true,
+                                sourceMap: true
                             }
                         },
                         {
-                            loader: "postcss-loader"
+                            loader: "postcss-loader",
+                            options: {
+                                sourceMap: true
+                            }
                         },
                         {
-                            loader: "sass-loader"
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: true
+                            }
                         }
                     ]
                 })
             },
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["env"]
+                        presets: ["env", "react"]
                     }
                 }
             }
@@ -74,9 +88,10 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
             filename: "static/scripts/commons.js",
-            minChunks: 2,
+            minChunks: Infinity,
         }),
         new ExtractTextPlugin({
+            allChunks: true,
             filename: "static/styles/[name].css"
         }),
         new BrowserSyncPlugin({
