@@ -9,14 +9,12 @@ import {
     render
 } from 'react-dom';
 
-(function() {
-    class App extends React.Component {
-        render() {
-            return (
-                <h1>Hello, world!</h1>
-            );
-        }
+class App extends React.Component {
+    render() {
+        return (
+            <h1>Hello, world!</h1>
+        );
     }
+}
 
-    render(<App />, document.getElementById('app'));
-})();
+export default App
