@@ -23,33 +23,39 @@ webpack -w
 ### Development
 ```
 src/
-    images/
-    scripts/
-        app.js
-        sw.js
-    styles/
-        app.scss
+    components/
+        Header/
+            Header.js
+            Header.scss
 
-postscss.config.js
-sw-precache.config.js
-webpack.config.js
+    App.js
+    App.scss
+
+    index.js
+    index.scss
+
+    sw.js
+
+    manifest.json
+
+    postscss.config.js
+    sw-precache.config.js
+    webpack.config.js
 ```
 
-* src
-    * images
-        * SVG, JPEG and PNG files use file loader, copied to static images folder if required in app.js
-    * scripts
-        * app.js - Default entry file for webpack
-        * sw.js - Imported into generated service-worker.js. (Insert SW Toolbox routing
-here). Not included in webpack build system; copied directly into app scripts folder
-    * styles
-        * app.scss - Processed into CSS, vendor prefixed with Autoprefixer and created as separate file using ExtractTextPlugin
----
-* sw-precache.config.js
-    * Basic service worker with option for runtimeCaching and pre-cached files
----
-* webpack.config.js
-    * Basic webpack configuration for outputting static files
+- components - Contains example header component
+    - Header
+        - Header.js - Basic React component with header element and nested title
+        - Header.scss - Styles for header component
+- App.js - App component with nested Header
+- App.scss - App styles, non component specific
+- index.js - Script file to manage imports and reference for Webpack entry point
+- index.scss - Default styles, non app specific
+- sw.js - Imported by sw-precache.config.js for custom [sw-toolbox ](https://googlechrome.github.io/sw-toolbox/) routing.
+- manifest.json - Web App manifest, copied over to app on build
+- postscss.config.js - Autoprefixer configuration
+- sw-precache.config.js - SW-Precache configuration
+- webpack.config.js - Webpack configuration
 
 
 ### Production
@@ -62,20 +68,22 @@ app/
             ...
         styles/
             ...
+
     index.html
+
     manifest.json
+
     service-worker.js
 ```
 
 ## Technologies
-* Webpack - Build system for all files
-* Babel - JavaScript polyfill
-* SASS - CSS pre-processor
-* PostCSS - Autoprefixer on CSS files
-* SW Precache - Service worker library used to cache files
-* Browsersync - Development server
-
+- Webpack - Build system for all files
+- Babel - JavaScript polyfill
+- SASS - CSS pre-processor
+- PostCSS - Autoprefixer on CSS files
+- SW Precache - Service worker library used to cache files
+- Browsersync - Development server
+- React - Interface building library
 
 ## Improvements
-* Dynamic HTML page generation
-* Express server
+- Express server
