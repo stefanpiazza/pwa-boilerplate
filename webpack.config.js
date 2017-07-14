@@ -14,7 +14,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: "./src/scripts/index.js",
+        app: "./src/index.js",
         commons: ['react', 'react-dom']
     },
     output: {
@@ -104,7 +104,7 @@ module.exports = {
         }),
         new SWPrecacheWebpackPlugin(swPrecacheConfig),
         new CopyWebpackPlugin([{
-                from: "./src/scripts/sw.js",
+                from: "./src/sw.js",
                 to: "static/scripts/sw.js"
             },
             {
@@ -119,7 +119,7 @@ module.exports = {
             title: "PWA Boilerplate"
         }),
         new FaviconsWebpackPlugin({
-            logo: "./src/images/favicon.png",
+            logo: "./src/favicon.png",
             prefix: "static/images/favicons/"
         })
     ]
