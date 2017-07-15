@@ -1,6 +1,31 @@
+.header {
+  background-color: #222;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  width: 100%; }
+
 .header__title {
+  color: #fff;
   font-family: Arial;
   text-align: center; }
+.footer {
+  background-color: #222;
+  bottom: 0;
+  padding: 20px;
+  position: fixed;
+  width: 100%; }
+
+.footer__title {
+  color: #fff;
+  font-family: Arial;
+  text-align: center; }
+.container {
+  bottom: 77px;
+  height: calc(100% - 154px);
+  position: fixed;
+  top: 77px;
+  width: 100%; }
 * {
   box-sizing: border-box;
   margin: 0;
