@@ -9,13 +9,13 @@ const swPrecacheConfig = require("./sw-precache.config.js");
 
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
     entry: {
         app: "./src/index.js",
-        commons: ['react', 'react-dom']
+        commons: ["react", "react-dom"]
     },
     output: {
         path: path.resolve(__dirname, "./app/"),
@@ -23,14 +23,19 @@ module.exports = {
         filename: "./static/scripts/[name].js",
     },
     devtool: "source-map",
+    resolve: {
+        alias: {
+            react: "preact-compat",
+            "react-dom": "preact-compat"
+        }
+    },
     devServer: {
         contentBase: path.join(__dirname, "app"),
     },
     module: {
         rules: [{
                 test: /\.(jpe?g|png|gif|svg)$/,
-                use: [
-                    {
+                use: [{
                         loader: "file-loader",
                         options: {
                             name: "/static/images/[name].[ext]"
@@ -45,13 +50,12 @@ module.exports = {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: [
-                        {
+                    use: [{
                             loader: "css-loader",
                             options: {
                                 camelCase: true,
                                 // Keep same as class definition for now
-                                localIdentName: '[local]',
+                                localIdentName: "[local]",
                                 importLoaders: 2,
                                 modules: true,
                                 sourceMap: true
@@ -113,7 +117,7 @@ module.exports = {
             }
         ]),
         new HtmlWebpackPlugin({
-            chunks: ['commons', 'app'],
+            chunks: ["commons", "app"],
             filename: "index.html",
             template: "./src/index.html",
             title: "PWA Boilerplate"
