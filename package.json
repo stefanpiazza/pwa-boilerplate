@@ -3,7 +3,10 @@
     "version": "1.0.0",
     "description": "",
     "main": "",
-    "scripts": {},
+    "scripts": {
+        "dev": "webpack -w",
+        "prod": "webpack -p -w"
+    },
     "author": "",
     "license": "ISC",
     "devDependencies": {
