@@ -11,11 +11,7 @@ module.exports = {
         "./static/scripts/sw.js"
     ],
     // Forces sw-toolbox to be included
-    runtimeCaching: [{
-        handler: "fastest",
-        urlPattern: "/"
-    },{
-        handler: "fastest",
-        urlPattern: /static/
-    }]
+    runtimeCaching: [
+
+    ]
 }
