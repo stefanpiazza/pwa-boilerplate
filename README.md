@@ -9,15 +9,23 @@ npm install or yarn
 ```
 
 ### Usage
+Basic express server
+```
+node server.js
+```
+
 Basic webpack command to builds files in app folder
 ```
 webpack
 ```
 
-Watches files for changes and uses Browsersync plugin for dev server.
+Watches files for changes and uses Browsersync plugin to proxy express server.
 ```
 webpack -w
 ```
+
+** Start express server and run webpack watch to begin development. **
+
 
 ## Structure
 ### Development
@@ -38,9 +46,11 @@ src/
 
     manifest.json
 
-    postscss.config.js
-    sw-precache.config.js
-    webpack.config.js
+postscss.config.js
+sw-precache.config.js
+webpack.config.js
+
+server.js
 ```
 
 - components - Contains example header component
@@ -56,6 +66,7 @@ src/
 - postscss.config.js - Autoprefixer configuration
 - sw-precache.config.js - SW-Precache configuration
 - webpack.config.js - Webpack configuration
+- server.js - Express server
 
 
 ### Production
@@ -82,8 +93,6 @@ app/
 - SASS - CSS pre-processor
 - PostCSS - Autoprefixer on CSS files
 - SW Precache - Service worker library used to cache files
-- Browsersync - Development server
+- Browsersync - Development proxy server
 - React - Interface building library
-
-## Improvements
-- Express server
+- Express - Backend server
