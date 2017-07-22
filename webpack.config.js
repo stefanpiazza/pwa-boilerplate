@@ -100,8 +100,10 @@ module.exports = {
         }),
         new BrowserSyncPlugin({
             host: "localhost",
+            notify: false,
             open: false,
             port: 3000,
+            reload: false,
             server: {
                 baseDir: ["app"]
             }
