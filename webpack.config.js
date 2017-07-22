@@ -103,10 +103,7 @@ module.exports = {
             notify: false,
             open: false,
             port: 3000,
-            reload: false,
-            server: {
-                baseDir: ["app"]
-            }
+            proxy: "http://localhost:9000/"
         }),
         new SWPrecacheWebpackPlugin(swPrecacheConfig),
         new CopyWebpackPlugin([{
