@@ -2,7 +2,10 @@ module.exports = {
     cacheId: "service-worker",
     filename: "service-worker.js",
     staticFileGlobs: [
-        // "app/static/scripts/commons.js"
+        "app/static/images/**.*",
+        "app/static/scripts/**.js",
+        "app/static/styles/**.css",
+        "app/**.html"
     ],
     staticFileGlobsIgnorePatterns: [/\.map$/],
     stripPrefix: "app/",
