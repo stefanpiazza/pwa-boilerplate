@@ -15,5 +15,10 @@ app.get('*', function(req, res) {
 const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, function() {
+    console.log(`
+-------------------------------------
+    Local: http://localhost:${PORT}
+-------------------------------------`
+    )
 
 });
